@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:random_learn/providers/counter_provider.dart';
 import 'package:provider/provider.dart';
 
-class CounterScreen extends StatefulWidget {
+class CounterScreen extends StatelessWidget {
   const CounterScreen({super.key});
 
-  @override
-  State<CounterScreen> createState() => _CounterScreenState();
-}
-
-class _CounterScreenState extends State<CounterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,22 +29,26 @@ class _CounterScreenState extends State<CounterScreen> {
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                    onPressed: () =>
-                        context.read<CounterProvider>().decrementCount(context),
-                    child: const Text("Decrement")),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                    onPressed: context.read<CounterProvider>().incrementCount,
-                    child: const Text("Increment")),
-              ],
-            ),
+            _buttons(context),
           ],
         ),
       ),
+    );
+  }
+
+  Row _buttons(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ElevatedButton(
+            onPressed: () =>
+                context.read<CounterProvider>().decrementCount(context),
+            child: const Text("Decrement")),
+        const SizedBox(width: 10),
+        ElevatedButton(
+            onPressed: context.read<CounterProvider>().incrementCount,
+            child: const Text("Increment")),
+      ],
     );
   }
 }
