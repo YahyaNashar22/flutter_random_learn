@@ -20,6 +20,7 @@ ElevatedButtonThemeData _elevatedButtonTheme() {
       shape: const WidgetStatePropertyAll(
         RoundedRectangleBorder(borderRadius: BorderRadius.zero),
       ),
+      fixedSize: const WidgetStatePropertyAll(Size(200, 50)),
       backgroundColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.hovered)) {
           return Colors.orange;
@@ -32,6 +33,13 @@ ElevatedButtonThemeData _elevatedButtonTheme() {
         }
         return Colors.white;
       }),
+      elevation: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.hovered)) {
+          return 10.00;
+        }
+        return 0;
+      }),
+      shadowColor: const WidgetStatePropertyAll(Colors.yellow),
       textStyle: const WidgetStatePropertyAll(TextStyle(fontSize: 18)),
     ),
   );
@@ -49,6 +57,7 @@ AppBarTheme _appBarTheme() {
     centerTitle: true,
     elevation: 10,
     shadowColor: Colors.purple,
+    iconTheme: IconThemeData(color: Colors.white),
     backgroundColor: Colors.deepPurple,
     titleTextStyle: TextStyle(
       color: Colors.white,
